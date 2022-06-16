@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="623.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.artimesia.dynamometer.Controller">
+    <left>
+        <VBox prefHeight="596.0" prefWidth="215.0" style="-fx-padding: 5px">
+            <children>
+                <Label text="포트 설정" />
+                <GridPane pickOnBounds="false" prefHeight="151.0" prefWidth="175.0" style="-fx-padding: 5px;-fx-border-color: darkgrey;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="54.0" minWidth="10.0" prefWidth="42.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="77.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="포트">
+                            <font>
+                            <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="serialPortBox" prefHeight="22.0" prefWidth="146.0" GridPane.columnIndex="1" />
+                        <Label text="속도" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="serialPortSpeedBox" prefHeight="22.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="체크" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="serialPortCheckBitBox" pickOnBounds="false" prefHeight="22.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="데이터" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="serialPortDataBitBox" prefHeight="22.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="정지" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="serialPortStopBitBox" prefHeight="22.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    </children>
+                </GridPane>
+                <Button fx:id="serialPortOpenBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="230.0" style="-fx-top-margin: 5px" text="열기">
+                    <font>
+                        <Font name="Consolas" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="measureBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="223.0" text="측정" />
+                <ProgressBar fx:id="measureProgressBar" prefHeight="45.0" prefWidth="216.0" progress="0.0" />
+                <Button fx:id="stopMeasureBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="228.0" text="측정 강제 종료" />
+                <Button fx:id="saveBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="224.0" text="분석" />
+
+                <Button fx:id="compareBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="224.0" text="일치도" />
+
+                <Button fx:id="recvClear" mnemonicParsing="false" prefHeight="36.0" prefWidth="220.0" style="-fx-top-margin: 5px" text="초기화">
+                    <font>
+                        <Font name="Consolas" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="exitBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="215.0" style="-fx-top-margin: 5px" text="종료">
+                    <font>
+                        <Font name="Consolas" size="12.0" />
+                    </font>
+                </Button>
+                <Label prefHeight="14.0" prefWidth="122.0" text="수신정보" />
+                <TextArea fx:id="recvTextArea" prefHeight="197.0" prefWidth="205.0">
+                <font>
+                  <Font name="Consolas" size="12.0" />
+                </font>
+                </TextArea>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="255.0" prefWidth="455.0" style="-fx-padding: 5px" BorderPane.alignment="CENTER">
+            <children>
+            <HBox prefHeight="331.0" prefWidth="866.0">
+               <children>
+                  <GridPane prefHeight="324.0" prefWidth="319.0" style="-fx-padding: 5px; -fx-border-color: darkgray;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="128.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="148.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="개인정보 입력">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="이름(Name)" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="성별(Gender)" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="나이(Age)" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="연락처(Mobile)" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="측정 위치(Location)" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="genderChoiceBox" prefHeight="35.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="locationChoiceBox" prefHeight="35.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="nameTextField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Consolas" size="18.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="ageTextField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Consolas" size="18.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="mobileTextField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Consolas" size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <GridPane prefHeight="324.0" prefWidth="609.0" style="-fx-padding: 5px;-fx-border-color: darkgrey;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="170.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="220.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="31.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="170.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="220.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="측정값">
+                          <font>
+                             <Font name="Consolas" size="12.0" />
+                          </font>
+                        </Label>
+                        <Label text="최대값" GridPane.columnIndex="3">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="검지(Index)" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="중지(Middle)" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="약지(Ring)" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="소지(Little)" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="검지(Index)" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="중지(Middle)" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="약지(Ring)" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="소지(Little)" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="합력(Sum)" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="합력(Sum)" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Consolas" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="indexLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="middleLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ringLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="littleLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sumLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="maxIndexLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="maxMiddleLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="maxRingLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="maxLittleLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="maxSumLabel" alignment="CENTER" prefHeight="38.0" prefWidth="229.0" style="-fx-background-color: white;" text="0.0" textAlignment="RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Consolas" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <GridPane prefHeight="366.0" prefWidth="866.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="800.0" minWidth="10.0" prefWidth="629.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="84.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="288.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="14.0" prefWidth="122.0" text="그래프" />
+                  <LineChart fx:id="fingerLineChart" legendVisible="false" GridPane.rowIndex="1">
+                    <xAxis>
+                      <NumberAxis animated="false" autoRanging="false" minorTickCount="1000" side="BOTTOM" tickLabelGap="5.0" upperBound="5000.0" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis animated="false" autoRanging="false" side="LEFT" tickLabelGap="5.0" upperBound="20.0" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </GridPane>
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <GridPane style="-fx-padding: 5px;-fx-border-color: darkgrey;-fx-padding: 5px" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="48.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.0" minWidth="10.0" prefWidth="352.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="수신">
+                    <font>
+                        <Font name="Consolas" size="12.0" />
+                    </font>
+                </Label>
+                <Label fx:id="recvCount" prefHeight="14.0" prefWidth="146.0" text="0" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="Consolas" size="12.0" />
+                    </font>
+                </Label>
+                <Button fx:id="CountReset" mnemonicParsing="false" text="재설정" GridPane.columnIndex="2">
+                    <font>
+                        <Font name="Consolas" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </GridPane>
+    </bottom>
+</BorderPane>
